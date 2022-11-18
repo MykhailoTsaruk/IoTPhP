@@ -4,6 +4,7 @@ require_once __DIR__ .'/WebAzure/data.php';
 require_once __DIR__ .'/WebAzure/registration.php';
 
 if (!empty($_POST)){
+    echo("123test123");
     $file = fopen("WebAzure/data.txt", "w");
     $data = load($data);
     write_to_file($file, $data);
