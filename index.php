@@ -1,3 +1,9 @@
+<?php
+
+require_once__DIR__.'/WebAzure/data.php';
+require_once__DIR__.'/WebAzure/registration.php';
+
+?>
 <!doctype html>
 <html>
     <head>
@@ -12,7 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <form>
+                <form method="post">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="name" class="form-control" id="name">
@@ -32,6 +38,8 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="Password">
+                        <label for="repear_password"></label>
+                        <input type="repear_password" class="form-control" id="repear_password">
                     </div>
                 </form>
             </div>
