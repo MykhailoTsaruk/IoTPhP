@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/incs/data.php';
-require_once __DIR__ . '/incs/functions.php';
+require_once __DIR__ .'/WebAzure/data.php';
+require_once __DIR__ .'/WebAzure/registration.php';
 
 ?>
 
