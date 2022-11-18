@@ -1,23 +1,23 @@
 <?php
 
     $data = [
-        'name' => [
+        'name'      => [
             'field_name' => 'Name',
             'requiered'  => true,
         ],
-        'surname' => [
+        'surname'   => [
             'field_name' => 'Surname',
             'requiered'  => false,
         ],
-        'email' => [
+        'email'     => [
             'field_name' => 'Email',
             'requiered'  => true,
         ],
-        'phone' => [
+        'phone'     => [
             'field_name' => 'Phone number',
             'requiered'  => false,
         ],
-        'password' => [
+        'password'  => [
             'field_name' => 'Password',
             'requiered'  => true,
         ],        
