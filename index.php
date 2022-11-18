@@ -19,7 +19,7 @@ require_once __DIR__ .'/WebAzure/registration.php';
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <form>
+                <form method="post">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="name" class="form-control" id="name">
