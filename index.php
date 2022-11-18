@@ -2,9 +2,9 @@
 <html>
     <head>
 
-        <meta charset="UTF-8">
-        <meta name="WebFormToIPaIOT" content="width=devise-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <title>Document</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
+        crossorigin="anonymous">
 
     </head>
     <body>
@@ -14,9 +14,11 @@
             <div class="col-md-6 offset-md-3">
                 <form>
                     <div class="form-group">
-                        <label for="name">Your Name</label>
+                        <label for="name">Name</label>
                         <input type="name" class="form-control" id="name">
-                        <label for="surname"> </label>
+                    </div>
+                    <div>
+                        <label for="surname">Surname</label>
                         <input type="surname" class="form-control" id="surname">
                     </div>
                     <div class="form-group">
@@ -26,6 +28,10 @@
                     <div class="form-group">
                         <label for="phone">Phone number</label>
                         <input type="phone" class="form-control" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="Password">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
