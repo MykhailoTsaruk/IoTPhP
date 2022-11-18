@@ -16,8 +16,6 @@
                     <div class="form-group">
                         <label for="name">Your Name</label>
                         <input type="name" class="form-control" id="name">
-                    </div>
-                    <div class="form-group">
                         <label for="surname"> </label>
                         <input type="surname" class="form-control" id="surname">
                     </div>
