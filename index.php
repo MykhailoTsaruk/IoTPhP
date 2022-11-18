@@ -33,10 +33,6 @@
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="Password">
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="Password">
-                    </div>
                 </form>
             </div>
         </div>
