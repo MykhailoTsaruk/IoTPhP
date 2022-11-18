@@ -39,8 +39,8 @@ require_once __DIR__ .'/WebAzure/registration.php';
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="Password">
-                        <label for="repear_password"></label>
-                        <input type="repear_password" class="form-control" id="repear_password">
+                        <label for="repeat_password"></label>
+                        <input type="repeat_password" class="form-control" id="repeat_password">
                     </div>
                 </form>
             </div>
