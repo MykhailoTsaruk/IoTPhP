@@ -1,30 +1,27 @@
 <?php
 
-    $data = [
-        'name'      => [
-            'field_name' => 'Name',
-            'requiered'  => true,
-        ],
-        'surname'   => [
-            'field_name' => 'Surname',
-            'requiered'  => false,
-        ],
-        'email'     => [
-            'field_name' => 'Email',
-            'requiered'  => true,
-        ],
-        'phone'     => [
-            'field_name' => 'Phone number',
-            'requiered'  => false,
-        ],
-        'password'  => [
-            'field_name' => 'Password',
-            'requiered'  => true,
-        ],        
-        'repeat-password' => [
-            'field_name' => 'Repeat password',
-            'requiered'  => true,
-        ]
-    ];
+     $data = [
+         'name' => [
+             'field_name' => ''
+         ],
+         'surname' => [
+             'field_name' => ''
+         ],
+         'email' => [
+             'field_name' => ''
+         ],
+         'phone-country' => [
+             'field_name' => ''
+         ],
+         'phone-number' => [
+             'field_name' => ''
+         ],
+         'password' => [
+             'field_name' => ''
+         ],
+         'repeat-password' => [
+             'field_name' => ''
+         ]
+     ];
 
 ?>

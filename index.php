@@ -1,61 +1,44 @@
-<?php
-
-require_once __DIR__ .'/WebAzure/data.php';
-require_once __DIR__ .'/WebAzure/registration.php';
-
-if (!empty($_POST)){
-    echo("123test123");
-    $file = fopen("WebAzure/data.txt", "w");
-    $data = load($data);
-    write_to_file($file, $data);
-    fclose($file);
-}
-
-?>
-
 <!doctype html>
 <html>
     <head>
-
+<!-- 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
-        crossorigin="anonymous">
+        crossorigin="anonymous"> -->
 
     </head>
     <body>
+        <form action="WebAzure/registration.php" method="post">
+            <div class="container">
+                <h1>Register</h1>
+                <p>Please fill in this form to create an account.</p>
+                <hr>
+                    <label for="name"><b>Your Name</b></label>
+                    <input type="text" placeholder="First Name" name="name" value="Mykhailo" required>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <form method="post">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="name" class="form-control" id="name">
-                    </div>
-                    <div>
-                        <label for="surname">Surname</label>
-                        <input type="surname" class="form-control" id="surname">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone number</label>
-                        <input type="phone" class="form-control" id="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="Password">
-                        <label for="repeat-password"></label>
-                        <input type="password" class="form-control" id="password">
-                    </div>
+                    <label for="surname"><b></b></label>
+                    <input type="text" placeholder="Last Name" name="surname" value="Tsaruk">
+                <hr>
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" value="mykhailo.tsaruk@student.tuke.sk" required>
+                <hr>
+                    <label for="phone-country-"><b>Phone</b></label>
+                    <input type="text" placeholder="Phone country type '421'" name="phone-country" value="421">
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                    <label for="phone-number"><b>Number</b></label>
+                    <input type="text" placeholder="xxx xxx xxx" name="phone-number" value="951 845 413">
+                <hr>
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" value="123456qwerty" required>
+
+                    <label for="repeat-password"><b></b></label>
+                    <input type="password" placeholder="Repeat Password" name="repeat-password" value="123456qwerty" required>
+                <hr>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-        </div>
-    </div>
+        </form>
 
     </body>
+
 </html>
