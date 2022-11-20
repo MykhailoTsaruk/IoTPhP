@@ -1,7 +1,0 @@
-Mykhailo;
-Tsaruk;
-mykhailo.tsaruk@student.tuke.sk;
-421;
-951845413;
-123456qwerty;
-123456qwerty;

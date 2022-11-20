@@ -13,7 +13,13 @@
          'phone-country' => [
              'field_name' => ''
          ],
-         'phone-number' => [
+         'phone-number1' => [
+             'field_name' => ''
+         ],
+         'phone-number2' => [
+             'field_name' => ''
+         ],
+         'phone-number3' => [
              'field_name' => ''
          ],
          'password' => [
