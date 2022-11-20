@@ -46,8 +46,6 @@
                 <h3>Path to user data file</h3>
                 <p><a href="WebAzure/data/data.txt">data.txt</a></p>
                 <p><a href="WebAzure/problem/problem.txt">problem.txt</a></p>
-<!--                <h4>WebAzure/data/data.txt</h4>-->
-<!--                <h4>WebAzure/problem/problem.txt</h4>-->
             </div>
         </form>
 
