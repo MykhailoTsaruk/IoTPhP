@@ -10,7 +10,9 @@
 #define LED_GREEN 33
 #define LED_BLUE  25
 
-#define BUTTON    35  
+#define PIEZO_PIN 26
+
+#define BUTTON    34
 
 #define RST_PIN   15
 #define SS_PIN    5
@@ -24,11 +26,24 @@ WiFiClient wifi;
 
 int balance = 0;
 
+void blink_led_red(){
+  for (int i = 0; i < 3; i++){
+    digitalWrite(LED_RED, HIGH);
+    tone(PIEZO_PIN, 493, 100);
+    delay(100);
+    digitalWrite(LED_RED, LOW);
+    tone(PIEZO_PIN, 493, 100);
+    delay(100);
+  }
+}
+
 void blink_led_green(){
   for (int i = 0; i < 3; i++){
     digitalWrite(LED_GREEN, HIGH);
+    tone(PIEZO_PIN, 493, 100);
     delay(100);
     digitalWrite(LED_GREEN, LOW);
+    tone(PIEZO_PIN, 493, 100);
     delay(100);
   }
 }
@@ -36,8 +51,10 @@ void blink_led_green(){
 void blink_led_blue(){
   for (int i = 0; i < 3; i++){
     digitalWrite(LED_BLUE, HIGH);
+    tone(PIEZO_PIN, 493, 100);
     delay(100);
     digitalWrite(LED_BLUE, LOW);
+    tone(PIEZO_PIN, 493, 100);
     delay(100);
   }
 }
@@ -62,6 +79,82 @@ void off_led(){
 //     digitalWrite(LED_RED, LOW);
 //     delay(200);
 // }
+
+void update_balance(int *balance){
+  int buf = (*balance);
+  int len_buffer = 16;
+  byte buffer[len_buffer];
+  for (int i = 0; i < len_buffer; i++){
+    if (buf >= 0) buffer[i] = buf+'0';
+    else buffer[i] = ' ';
+  }
+  MFRC522::MIFARE_Key key;
+  MFRC522::StatusCode status;
+  byte block = 1;
+  status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, block, &key, &(mfrc522.uid));
+  if (status != MFRC522::STATUS_OK) {
+    Serial.print(F("PCD_Authenticate() failed: "));
+    Serial.println(mfrc522.GetStatusCodeName(status));
+    return;
+  }
+  else Serial.println(F("PCD_Authenticate() success: "));
+
+  // Write block
+  status = mfrc522.MIFARE_Write(block, buffer, 16);
+  if (status != MFRC522::STATUS_OK) {
+    Serial.print(F("MIFARE_Write() failed: "));
+    Serial.println(mfrc522.GetStatusCodeName(status));
+    return;
+  }
+  else Serial.println(F("MIFARE_Write() success: "));
+
+}
+
+void buy(int *balance){
+
+  blink_led_green();
+
+  int price = 123;
+  lcd.setCursor(0, 0);
+ 
+  
+  lcd.print("Welcome");
+  delay(100);
+  lcd.setCursor(2, 1);
+  lcd.print("Esp32");
+
+  lcd.setCursor(8, 1);
+  lcd.print(price);
+
+  char a = 36;
+  lcd.print(a);
+
+  if ((*balance) >= price){
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("thanks for");
+    lcd.setCursor(1, 0);
+    lcd.print("the purchase :)");
+    (*balance) -= price;
+    update_balance(balance);
+    blink_led_green();
+    delay(5000);
+  }
+  else if ((*balance) < price){
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Insufficient");
+    lcd.setCursor(1, 0);
+    lcd.print("funds :(");
+    blink_led_red();
+    delay(5000);
+  }
+
+  lcd.clear();
+
+  blink_led_green();
+
+}
 
 void dump_card(){
   // Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
@@ -231,26 +324,33 @@ void setup() {
 
 void loop() {
 
-  if (digitalRead(BUTTON) == LOW) dump_card();
-  else{ read_data(&balance); Serial.println(balance);}
+  if (digitalRead(BUTTON) == LOW) {
+    delay(100);
+    if (digitalRead(BUTTON) == LOW){
+      read_data(&balance);
+      Serial.println(balance);
+    }
+    else buy(&balance);
+  }
+  else buy(&balance);
+  int price = 123;
+  lcd.setCursor(0, 0);
+ 
   
+  lcd.print("Welcome");
+  delay(100);
+  lcd.setCursor(2, 1);
+  lcd.print("Esp32");
+
+
+  lcd.setCursor(8, 1);
+  lcd.print(price);
   String payload="";
   
-  if (WiFi.status() == WL_CONNECTED) // ak je ESP pripojene k wifi
-  {
-    HTTPClient http; // vytvorenie HTTP clienta
-    String server_name = "https://iot-php-tsaruk.azurewebsites.net/"; // nazov vasho webu a web stranky, ktoru chcete nacitat
-    http.begin(server_name.c_str());
-    int httpCode = http.GET(); // http code
-    if (httpCode>0) 
-      payload= http.getString();
-
-    http.end();
-  }
   if (WiFi.status() == WL_CONNECTED) 
   {
     HTTPClient http;
-    String server_name = "https://phpipaiot.azurewebsites.net/getParameters.php/?"; // nazov vasho webu a web stranky, ktoru chcete nacitat
+    String server_name = "https://iot-php-tsaruk.azurewebsites.net/WebAzure/esp32_test/getParameters.php?"; // nazov vasho webu a web stranky, ktoru chcete nacitat
     server_name += "balance="; // nazov premennej na webe
     server_name += balance; // hodnota premmenej
     http.begin(server_name.c_str());
@@ -262,23 +362,5 @@ void loop() {
     }
     http.end();
   }
-
-
-  lcd.setCursor(0, 0);
- 
-  
-  lcd.print("Welcome");
-  delay(100);
-  lcd.setCursor(2, 1);
-  lcd.print("Weed");
-  
-
-  lcd.setCursor(8, 1);
-  for (int thisChar = 2; thisChar < 5; thisChar++) {
-    lcd.print(thisChar);
-    delay(300);
-    lcd.clear();
-  }
-
 
 } 
