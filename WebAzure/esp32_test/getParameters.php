@@ -10,7 +10,7 @@ echo $text;
 echo "<br>";
 
 $file1 = fopen("balance.txt","w") or die("Unable to open file!");
-$text1 = "balance = %d$" . $sn1;
+$text1 = "balance = " . $sn1 . "$";
 
 fwrite($file1, $text1);
 fclose($file1);
