@@ -154,25 +154,25 @@ void buy(int *balance){
 
 }
 
-void dump_card(){
-  // Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
-	if ( ! mfrc522.PICC_IsNewCardPresent()) {
-		return;
-	}
+// void dump_card(){
+//   // Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
+// 	if ( ! mfrc522.PICC_IsNewCardPresent()) {
+// 		return;
+// 	}
 
-	// Select one of the cardsq
-	if ( ! mfrc522.PICC_ReadCardSerial()) {
-		return;
-	}
+// 	// Select one of the cardsq
+// 	if ( ! mfrc522.PICC_ReadCardSerial()) {
+// 		return;
+// 	}
 
-  off_led();
-  blink_led_green();
+//   off_led();
+//   blink_led_green();
   
-  mfrc522.PICC_DumpToSerial(&(mfrc522.uid));
+//   mfrc522.PICC_DumpToSerial(&(mfrc522.uid));
   
-  blink_led_green();
-  delay(500);
-}
+//   blink_led_green();
+//   delay(500);
+// }
 
 void read_data(int *balance){
   
