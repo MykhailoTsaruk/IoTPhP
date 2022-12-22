@@ -19,10 +19,10 @@
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
 LiquidCrystal_I2C lcd(0x27,16,2);  // Устанавливаем дисплей
+WiFiClient wifi;
 
 const char* ssid = "qwerty";
 const char* pass = "1298347612";
-WiFiClient wifi;
 
 int balance = 0;
 
@@ -125,9 +125,7 @@ void buy(int *balance){
 
   lcd.setCursor(8, 1);
   lcd.print(price);
-
-  char a = 36;
-  lcd.print(a);
+  lcd.print("$");
 
   if ((*balance) >= price){
     lcd.clear();
@@ -197,17 +195,6 @@ void read_data(int *balance){
   byte len;
   MFRC522::StatusCode status;
 
-  //-------------------------------------------
-  //-------------------------------------------
-
-  // mfrc522.PICC_DumpDetailsToSerial(&(mfrc522.uid)); //dump some details about the card
-
-  //mfrc522.PICC_DumpToSerial(&(mfrc522.uid));      //uncomment this to see all blocks in hex
-
-  //-------------------------------------------
-
-  // Serial.print(F("Balance: "));
-
   byte buffer1[18];
 
   block = 4;
@@ -227,18 +214,6 @@ void read_data(int *balance){
     Serial.println(mfrc522.GetStatusCodeName(status));
     return;
   }
-
-  // //PRINT FIRST NAME
-  // for (uint8_t i = 0; i < 16; i++)
-  // {
-  //   if (buffer1[i] != 32)
-  //   {
-  //     Serial.write(buffer1[i]);
-  //   }
-  // }
-  // Serial.print(" ");
-
-  //---------------------------------------- GET LAST NAME
 
   byte buffer2[18];
   block = 1;
@@ -345,6 +320,7 @@ void loop() {
 
   lcd.setCursor(8, 1);
   lcd.print(price);
+  lcd.print("$");
   String payload="";
   
   if (WiFi.status() == WL_CONNECTED) 
