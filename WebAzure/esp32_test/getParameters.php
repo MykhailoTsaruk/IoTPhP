@@ -8,7 +8,6 @@ $sum = $sn1;
 
 echo $text;
 echo "<br>";
-echo "Sum:" . $sum;
 
 $file1 = fopen("balance.txt","w") or die("Unable to open file!");
 $text1 = "balance = " . $sn1 . "$";
