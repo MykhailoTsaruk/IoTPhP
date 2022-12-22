@@ -1,6 +1,5 @@
-#include <WiFiClientSecure.h>
-#include <WiFi.h>
-#include <HTTPClient.h>
+// #include "DumpInfo.h"
+
 #include <SPI.h>
 #include <MFRC522.h>
 #include <Wire.h> 
@@ -17,10 +16,6 @@
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
 LiquidCrystal_I2C lcd(0x27,16,2);  // Устанавливаем дисплей
-
-const char* ssid = "qwerty";
-const char* pass = "1298347612";
-WiFiClient wifi;
 
 int balance = 0;
 
@@ -196,19 +191,6 @@ void read_data(int *balance){
 
 void setup() {
   Serial.begin(230400);
-  
-  WiFi.begin(ssid, pass);
-  Serial.println("Connecting");
-
-  while (WiFi.status() != WL_CONNECTED)
-  {
-    delay (1000);
-    Serial.print(".");
-  }
-
-  Serial.println("Connected");
-  
-  
   //LED
   pinMode(LED_GREEN, OUTPUT);
   pinMode(LED_RED,   OUTPUT);
@@ -232,25 +214,7 @@ void loop() {
   if (digitalRead(BUTTON) == LOW) dump_card();
   else{ read_data(&balance); Serial.println(balance);}
 
-  if (WiFi.status() == WL_CONNECTED) // ak je ESP pripojene k wifi
-  {
-    HTTPClient http; // vytvorenie HTTP clienta
-    String server_name = "https://iot-php-tsaruk.azurewebsites.net/"; // nazov vasho webu a web stranky, ktoru chcete nacitat
-    http.begin(server_name.c_str());
-    int httpCode = http.GET(); // http code
-    http.end();
-  }
-  if (WiFi.status() == WL_CONNECTED) 
-  {
-    HTTPClient http;
-    String server_name = "https://phpipaiot.azurewebsites.net/getParameters.php/?"; // nazov vasho webu a web stranky, ktoru chcete nacitat
-    server_name += "balance="; // nazov premennej na webe
-    server_name += balance; // hodnota premmenej
-    http.begin(server_name.c_str());
-    int httpCode = http.GET(); // http code
-    http.end();
-  }
-
+  // blink();
 
   lcd.setCursor(0, 0);
  
