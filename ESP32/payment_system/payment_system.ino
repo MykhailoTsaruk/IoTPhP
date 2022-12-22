@@ -285,6 +285,8 @@ void setup() {
   pinMode(LED_BLUE,  OUTPUT);
   //BUTTONS
   pinMode(BUTTON, INPUT);
+  //BEEPER
+  pinMode(PIEZO_PIN, OUTPUT);
 
   while (!Serial);		// Do nothing if no serial port is opened (added for Arduinos based on ATMEGA32U4)
 	SPI.begin();			// Init SPI bus
