@@ -278,7 +278,6 @@ void setup() {
 
   Serial.println("Connected");
   
-  
   //LED
   pinMode(LED_GREEN, OUTPUT);
   pinMode(LED_RED,   OUTPUT);
@@ -313,7 +312,7 @@ void loop() {
   int price = 123;
   lcd.setCursor(0, 0);
  
-  
+
   lcd.print("Welcome");
   delay(100);
   lcd.setCursor(2, 1);
