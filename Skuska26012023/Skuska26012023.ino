@@ -47,6 +47,7 @@ void loop()
     server_name += "&humidity="; // nazov premennej na webe
     server_name += humidity; // hodnota premennej
     http.begin(server_name.c_str());
+    delay(1000);
     http.end();
   }
 
@@ -54,7 +55,7 @@ void loop()
   Serial.print(temperature);
   Serial.print("C ");
   Serial.print("Humidity: ");
-  Serial.println(humidity);
-  Serial.print("%");
+  Serial.print(humidity);
+  Serial.println("%");
   delay(1000);
 }
