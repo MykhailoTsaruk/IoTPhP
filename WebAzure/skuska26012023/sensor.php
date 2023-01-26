@@ -11,5 +11,6 @@
 <body>
 <h1>HelloWorld</h1>
 <?php writeData()?>
+<meta http-equiv="Refresh" content="15" />
 </body>
 </html>

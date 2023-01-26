@@ -47,8 +47,18 @@ void loop()
     server_name += "&humidity="; // nazov premennej na webe
     server_name += humidity; // hodnota premennej
     http.begin(server_name.c_str());
-    delay(1000);
-    http.end();
+    int httpResponseCode = http.GET();
+    if (httpResponseCode>0) {
+        Serial.print("HTTP Response code: ");
+        Serial.println(httpResponseCode);
+        String payload = http.getString();
+        Serial.println(payload);
+      }
+      else {
+        Serial.print("Error code: ");
+        Serial.println(httpResponseCode);
+      }
+      http.end();
   }
 
   Serial.print("Temperature: ");
