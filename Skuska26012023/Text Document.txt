@@ -1,0 +1,1 @@
+ESP DTH vypisat hodnotu na webe, vlkost
