@@ -16,7 +16,7 @@ int poc=0;
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   dht.begin();
 
   WiFi.begin(ssid, pass);
@@ -35,8 +35,8 @@ void setup()
 
 void loop()
 {
-  float temperature = dht.readTemperature();
-  float humidity = dht.readHumidity();
+  int temperature = dht.readTemperature();
+  int humidity = dht.readHumidity();
 
   if (WiFi.status() == WL_CONNECTED) 
   {
@@ -52,8 +52,9 @@ void loop()
 
   Serial.print("Temperature: ");
   Serial.print(temperature);
-  Serial.print("ºC ");
+  Serial.print("C ");
   Serial.print("Humidity: ");
   Serial.println(humidity);
+  Serial.print("%");
   delay(1000);
 }
