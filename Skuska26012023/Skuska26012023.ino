@@ -47,12 +47,6 @@ void loop()
     server_name += "&humidity="; // nazov premennej na webe
     server_name += humidity; // hodnota premennej
     http.begin(server_name.c_str());
-    int httpCode = http.GET(); // http code
-
-    if (httpCode>0) 
-    {
-      payload= http.getString();
-    }
     http.end();
   }
 
